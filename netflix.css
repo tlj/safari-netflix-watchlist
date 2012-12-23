@@ -1,0 +1,66 @@
+.nfq_popover {
+    margin: 0;
+    padding: 0;
+    /*
+    width: 440px;
+    */
+}
+
+.nfq_popover h1 {
+    font-size: 14px;
+    margin: 0 0 5px 0;
+    padding: 5px;
+    background: #B9090B;
+    color: white;
+}
+
+.nfq_popover .watchlistbtn {
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.nfq_popover h2.title {
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+.nfq_popover #watchlist_list {
+    padding: 0 10px 10px 10px;
+}
+
+/*
+.nfq_popover .watchlist-entity {
+    float: left;
+    width: 180px;
+    margin-right: 20px;
+}
+*/
+
+.title-wrapper .watchlistbtn {
+    margin-left: 1em;
+    cursor: pointer;
+}
+
+#BobMovie a.watchlistbtn {
+    font-size: 12px !important;
+    margin-right: 10px !important;
+    cursor: pointer !important;
+}
+
+.watchlist-entity {
+    margin: 1em 0;
+    clear: both;
+}
+
+.watchlist-entity img {
+    float: left;
+    height: 60px;
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+
+.watchlist-entity .title {
+    cursor: pointer;
+}
+

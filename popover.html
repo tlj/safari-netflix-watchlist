@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" charset="utf-8" src="jquery-1.8.3.min.js"></script>
+        <link rel="stylesheet" href="netflix.css">
+        <script type="text/javascript">
+
+            function update() {
+                var w = jQuery('#watchlist_list').html('');
+                for (var key in localStorage) {
+                    var entity = JSON.parse(localStorage[key]);
+                    w.append(
+                        '<div class="watchlist-entity" id="watchlist-' + key + '">' +
+                            '<img src="' + entity.img + '" />' +
+                            '<h2 class="title">' + entity.name + '</h2>' +
+                            '<a id="removeWatchlistBtn" class="remove-from-watchlist watchlistbtn" style="display: inline;">Remove from watchlist</a>' +
+                        '</div>'
+                    );
+                    (function(entity_url, entity_id) {
+                        $('#watchlist-' + key + ' h2.title').bind('click', function() {
+                            safari.application.activeBrowserWindow.activeTab.url = 'https://movies.netflix.com' + entity_url;
+                        });
+                        $('#watchlist-' + key + ' .remove-from-watchlist').bind('click', function() {
+                            safari.extension.globalPage.contentWindow.watchlistRemove(entity_id);
+                        });
+                    })(entity.url, key);
+
+
+                }
+            }
+
+        </script>
+    </head>
+    <body class="nfq_popover">
+        <h1>Netflix Watchlist</h1>
+
+        <div id="watchlist_list">
+
+        </div>
+
+        <script type="text/javascript">
+            update();
+        </script>
+    </body>
+</html>
+

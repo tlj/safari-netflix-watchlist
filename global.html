@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript">
+            function watchlistStore(key, data) {
+                localStorage[key] = JSON.stringify(data);
+                safari.extension.popovers[0].contentWindow.update();
+            }
+
+            function watchlistRemove(key) {
+                localStorage.removeItem(key);
+                safari.extension.popovers[0].contentWindow.update();
+            }
+
+            function handleGlobalMessage(message) {
+                if (message.name == 'watchlistStore') {
+                    watchlistStore(message.message.key, message.message.data);
+                }
+
+                if (message.name == 'watchlistRemove') {
+                    watchlistRemove(message.message);
+                }
+
+                if (message.name == 'isEntityAdded') {
+                    var ret = true;
+                    if (!localStorage[message.message]) ret = false;
+
+                    message.target.page.dispatchMessage('isEntityAddedAnswer', ret);
+                }
+            }
+
+            safari.application.addEventListener('message', handleGlobalMessage);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
